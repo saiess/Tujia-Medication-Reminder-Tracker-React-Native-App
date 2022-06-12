@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
+  StatusBar,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
@@ -13,10 +14,15 @@ const SplashScreen = () => {
       const navigation = useNavigation();
   return (
     <SafeAreaView style={tw`flex-1 bg-gray-900 items-center`}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#111827"
+        barStyle="light-content"
+      />
       <View style={tw`w-11/12 h-36 mt-16 flex justify-center items-center`}>
         <Image
           source={require('../assets/images/logo.png')}
-          style={tw`w-4/6 h-10 bg-cover`}
+          style={tw`w-4/6 h-10`}
         />
       </View>
       <View style={tw`flex-1 w-full h-2/5 items-center justify-evenly`}>

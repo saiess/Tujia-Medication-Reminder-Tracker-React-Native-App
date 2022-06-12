@@ -5,7 +5,8 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
-  Button
+  Button,
+  Dimensions,
 } from 'react-native';
 import tw from 'twrnc';
 import { AntDesign } from '@expo/vector-icons';
@@ -15,8 +16,15 @@ import BottomStatusBar from '../components/BottomStatusBar';
 import RNPickerSelect from 'react-native-picker-select';
 
 const Schedule = () => {
+  const height = Dimensions.get('window').height;
   return (
-    <SafeAreaView style={tw`flex-1 bg-[#E4EEF3]`}>
+    <SafeAreaView
+      style={{
+        height: height,
+        paddingBottom: 36,
+        backgroundColor: '#E4EEF3',
+      }}
+    >
       <Text style={tw`text-gray-700 font-bold text-xl px-6 py-4`}>
         At what time should i remind you:
       </Text>
