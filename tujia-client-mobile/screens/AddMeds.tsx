@@ -59,6 +59,17 @@ const AddMeds = () => {
                   Medication Name
                 </Text>
               </TouchableOpacity>
+
+              <TouchableOpacity
+                style={tw`w-4/5 h-16 rounded-lg mt-8 flex flex-row bg-slate-50 shadow-sm items-center`}
+                // @ts-ignore
+                onPress={() => navigation.navigate('ShowData')}
+              >
+                <View style={tw`w-16 h-full rounded-l-xl bg-slate-700`} />
+                <Text style={tw`text-base font-semibold ml-6`}>
+                  show data test
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={tw`flex items-center`}>

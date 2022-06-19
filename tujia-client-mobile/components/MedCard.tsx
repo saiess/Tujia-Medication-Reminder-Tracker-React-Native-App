@@ -11,7 +11,7 @@ const MedCard = ({ }) => {
     >
       <Image
         source={require('../assets/images/med.png')}
-        style={tw`w-4/5 h-24 bg-cover`}
+        style={tw`w-4/5 h-24`}
       />
       <View style={tw`bg-white w-full h-2/5 rounded-lg flex items-center`}>
         <Text style={tw`text-sm font-bold`}>Medication A</Text>

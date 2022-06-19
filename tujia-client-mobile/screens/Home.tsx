@@ -83,7 +83,7 @@ const Home = () => {
                 >
                   <Image
                     source={require('../assets/images/pill.png')}
-                    style={tw`w-4/5 h-12 bg-cover`}
+                    style={tw`w-4/5 h-12`}
                   />
                 </View>
                 <View style={tw`flex justify-center`}>
@@ -102,7 +102,7 @@ const Home = () => {
                 >
                   <Image
                     source={require('../assets/images/pill1.png')}
-                    style={tw`w-full h-12 bg-cover`}
+                    style={tw`w-full h-12`}
                   />
                 </View>
                 <View style={tw`flex justify-center`}>
