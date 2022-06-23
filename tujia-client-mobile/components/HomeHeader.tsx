@@ -16,7 +16,7 @@ const HomeHeader = () => {
           color="black"
         />
         <View>
-          <Text>Welcome</Text>
+          <Text>Welcome 👋</Text>
           <Text style={tw`text-xl font-bold`}>Said Essalami</Text>
         </View>
       </View>

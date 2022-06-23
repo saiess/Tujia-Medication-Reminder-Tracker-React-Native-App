@@ -10,8 +10,10 @@ import tw from 'twrnc';
 import { useNavigation } from '@react-navigation/native';
 import BottomStatusBar from '../components/BottomStatusBar';
 
-const RemiderType = () => {
-  const navigation = useNavigation();
+const RemiderType = ({ route, navigation }: any) => {
+  const { medication } = route.params;
+  console.log(medication);
+  const navigating = useNavigation();
   return (
     <SafeAreaView style={tw`flex-1 bg-[#E4EEF3]`}>
       <Text style={tw`text-gray-700 font-bold text-xl px-6 py-4`}>
@@ -23,7 +25,10 @@ const RemiderType = () => {
           <TouchableOpacity
             style={tw`w-4/5 h-16 rounded-lg mt-8 flex justify-center bg-slate-50`}
             // @ts-ignore
-            onPress={() => navigation.navigate('Schedule')}
+            onPress={() => navigating.navigate('Schedule',
+              {
+                medication: medication,
+                })}
           >
             <Text style={tw`text-base font-semibold ml-6`}>Daily</Text>
             <Text style={tw`text-xs ml-6 text-[#17CBB7]`}>

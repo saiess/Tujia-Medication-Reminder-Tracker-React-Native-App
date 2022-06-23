@@ -8,8 +8,6 @@ import Schedule from './screens/Schedule';
 import SplashScreen from './screens/SplashScreen';
 import Register from './screens/Register';
 import SignIn from './screens/SignIn';
-import ShowData from './screens/ShowData';
-
 
 const RootStack = createStackNavigator();
 const theme = {
@@ -40,7 +38,6 @@ const App = () =>{
       >
         <RootStack.Screen name="SplashScreen" component={SplashScreen} />
         <RootStack.Screen name="Register" component={Register} />
-        <RootStack.Screen name="ShowData" component={ShowData} />
         <RootStack.Screen name="SignIn" component={SignIn} />
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen name="AddMeds" component={AddMeds} />

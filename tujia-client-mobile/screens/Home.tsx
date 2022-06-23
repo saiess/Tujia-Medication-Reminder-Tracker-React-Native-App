@@ -1,17 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Text, View, SafeAreaView, FlatList, Image } from 'react-native';
 import tw from 'twrnc';
 
-// import { COLORS, MedsData } from '../constants';
-import { COLORS, NFTData } from '../constants';
+import { COLORS } from '../constants';
 import {
   MedCard,
   HomeHeader,
   FocusedStatusBar,
   BottomStatusBar,
 } from '../components';
+import axios from 'axios';
 
 const Home = () => {
+  let baseUrl = 'http://192.168.1.3:4000/schedule/';
+  const [meds, setMeds] = useState([]);
+  useEffect(() => {
+    axios.get(baseUrl)
+      .then(function (response) {
+        console.log(response);
+        setMeds(response.data);
+      }
+      )
+      .catch(function (error) {
+        console.log(error);
+      }
+      );
+  }, []);
   return (
     <SafeAreaView style={tw`flex-1`}>
       {/* @ts-ignore */}
@@ -26,11 +40,12 @@ const Home = () => {
             Recent Medacations
           </Text>
           <FlatList
-            data={NFTData}
-            renderItem={({ item }) => (
+            data={meds}
+            renderItem={({ item, index }) => (
               // @ts-ignore
               <MedCard data={item} />
             )}
+            // @ts-ignore
             keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingTop: 0 }}

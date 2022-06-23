@@ -9,13 +9,39 @@ import {
   Dimensions,
 } from 'react-native';
 import tw from 'twrnc';
-import { AntDesign } from '@expo/vector-icons';
-import SearchMeds from '../components/AddMeds/SearchMeds';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/core';
 import BottomStatusBar from '../components/BottomStatusBar';
 import RNPickerSelect from 'react-native-picker-select';
+import axios from 'axios';
 
-const Schedule = () => {
+const Schedule = ({ route, navigation }: any) => {
+  const { medication } = route.params;
+  let baseUrl = 'http://192.168.1.3:4000/schedule/';
+  const [time, setTime] = useState<string>('');
+  const [qountity, setQountity] = useState<string>('');
+  const [unit, setUnit] = useState<string>('');
+    const navigating = useNavigation();
+
+  const SaveData = () => {
+    const data = {
+      time: time,
+      quantity: qountity,
+      unit: unit,
+      name: medication,
+    };
+    console.log(data);
+
+    axios
+      .post(baseUrl, data)
+      .then(function (response) {
+        console.log(response);
+        // @ts-ignore
+        navigating.navigate('Home');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const height = Dimensions.get('window').height;
   return (
     <SafeAreaView
@@ -35,6 +61,13 @@ const Schedule = () => {
             style={tw`w-4/5 h-16 rounded-lg mt-8 flex justify-center bg-slate-50`}
           >
             <Text style={tw`text-base font-semibold ml-6`}>Time</Text>
+            <TextInput
+              placeholder="Time"
+              style={tw`text-xs ml-6 font-semibold`}
+              keyboardType="numeric"
+              onChangeText={(text) => setTime(text)}
+              defaultValue={time}
+            />
           </View>
 
           <View
@@ -42,11 +75,11 @@ const Schedule = () => {
           >
             <Text style={tw`text-base font-semibold`}>Unit(s)</Text>
             <RNPickerSelect
-              onValueChange={(value) => console.log(value)}
+              onValueChange={(value) => setUnit(value)}
               items={[
-                { label: 'Football', value: 'football' },
-                { label: 'Baseball', value: 'baseball' },
-                { label: 'Hockey', value: 'hockey' },
+                { label: 'pill', value: 'pill' },
+                { label: 'injection', value: 'injection' },
+                { label: 'synergy', value: 'synergy' },
               ]}
             />
           </View>
@@ -59,10 +92,27 @@ const Schedule = () => {
               placeholder="1"
               style={tw`text-xs ml-6 font-semibold`}
               keyboardType="numeric"
+              onChangeText={(text) => setQountity(text)}
+              defaultValue={qountity}
             />
+          </View>
+
+          <View
+            style={tw`w-4/5 h-1/2 rounded-lg mt-8 flex justify-center items-center`}
+          >
+            <TouchableOpacity
+              style={tw`w-3/5 h-12 rounded-3xl mt-8 flex justify-center bg-[#17CBB7] shadow-sm`}
+              // @ts-ignore
+              onPress={() => SaveData()}
+            >
+              <Text style={tw`text-lg text-gray-800 text-center font-semibold`}>
+                Save Medication
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
+
       <View style={tw`flex items-center`}>
         <BottomStatusBar />
       </View>
