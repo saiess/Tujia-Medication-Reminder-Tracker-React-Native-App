@@ -16,15 +16,14 @@ export class UsersService {
   ) {}
 
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<any> {
-    const { email, password, firstname, lastname, phone } = authCredentialsDto;
+    const { email, password, fullname, phone } = authCredentialsDto;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new this.userModel({
       email,
       password: hashedPassword,
-      firstname,
-      lastname,
+      fullname,
       phone,
     });
 

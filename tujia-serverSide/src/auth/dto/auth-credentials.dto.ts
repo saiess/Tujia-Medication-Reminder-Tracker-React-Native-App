@@ -14,12 +14,7 @@ export class AuthCredentialsDto {
   @IsString()
   @MinLength(3, { message: 'Password is too short (8 characters min)' })
   @MaxLength(20, { message: 'Password is too long (20 characters max)' })
-  firstname: string;
-
-  @IsString()
-  @MinLength(3, { message: 'Password is too short (8 characters min)' })
-  @MaxLength(20, { message: 'Password is too long (20 characters max)' })
-  lastname: string;
+  fullname: string;
 
   @IsString()
   @MinLength(10, { message: 'Phone is too short (10 characters min)' })

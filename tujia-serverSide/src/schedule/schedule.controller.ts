@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ScheduleService } from './schedule.service';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { UpdateScheduleDto } from './dto/update-schedule.dto';
@@ -19,16 +27,19 @@ export class ScheduleController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.scheduleService.findOne(+id);
+    return this.scheduleService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateScheduleDto: UpdateScheduleDto) {
-    return this.scheduleService.update(+id, updateScheduleDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateScheduleDto: UpdateScheduleDto,
+  ) {
+    return this.scheduleService.update(id, updateScheduleDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.scheduleService.remove(+id);
+    return this.scheduleService.remove(id);
   }
 }
